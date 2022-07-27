@@ -1,2 +1,2 @@
 # FlappyBird
-Flappy Bird game
+Flappy Bird game in Java.
