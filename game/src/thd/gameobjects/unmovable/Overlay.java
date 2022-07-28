@@ -11,6 +11,12 @@ public class Overlay extends GameObject {
     private String text;
     private GameObjectManager gameObjectManager;
     private int secondsToShow;
+    private int fpsCounter;
+    private int fps;
+    private long time;
+    private long time2;
+    private long timeDiff;
+
     /**
      * Mindestanforderung, das jedes GameObject haben muss.
      *
@@ -21,6 +27,9 @@ public class Overlay extends GameObject {
         positionInSort = 101;
         this.gameObjectManager = gameObjectManager;
         text = " ";
+        fpsCounter = 0;
+        fps = 30;
+        time = System.currentTimeMillis();
     }
 
     public void showMessage(String message, int secondsToShow) {
@@ -31,7 +40,18 @@ public class Overlay extends GameObject {
 
     @Override
     public void addToCanvas() {
-        gameView.addTextToCanvas("SCORE:" + gameObjectManager.score, 10, 10, 15, Color.BLACK, 0);
+        gameView.addTextToCanvas("SCORE:" + (int) gameObjectManager.score, 10, 10, 15, Color.BLACK, 0);
+        gameView.addTextToCanvas("FPS: " + fps, 420, 10, 15, Color.BLACK, 0);
+        time2 = System.currentTimeMillis();
+        fpsCounter += 1;
+        timeDiff = time2 - time;
+        System.out.println(fpsCounter);
+        if ((timeDiff) >= 1000) {
+            time = System.currentTimeMillis();
+            fps = fpsCounter;
+            fpsCounter = 0;
+
+        }
 
         if (gameView.timerIsActive(text, this)) {
             gameView.addTextToCanvas(text, GameView.WIDTH / 2d - 150, GameView.HEIGHT / 2d, 30, Color.BLACK, 0);

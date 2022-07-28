@@ -47,11 +47,13 @@ public class Bird extends CollidableGameObject {
         positionInSort = 100;
         duration = 50;
 
-        width = 34;
-        height = 24;
+        width = 25;
+        height = 20;
 
         hitBoxHeight = height;
         hitBoxWidth = width;
+        hitBoxOffsetY = 2;
+        hitBoxOffsetX = 3;
     }
 
     public void animation() {
@@ -73,7 +75,8 @@ public class Bird extends CollidableGameObject {
     @Override
     public void reactToCollision(CollidableGameObject other) {
         if (other.getClass() == Pillar.class) {
-            initializeGameOver();
+            gameObjectManager.gameOver = true;
+            //initializeGameOver();
         }
     }
 
@@ -92,7 +95,7 @@ public class Bird extends CollidableGameObject {
                 rotation -= 1;
             }
             if (!gameView.alarmIsSet("jumping", this)) {
-                gameView.setAlarm("jumping", this, 100);
+                gameView.setAlarm("jumping", this, 200);
                 jumpNow = true;
                 rotation = 0;
 
@@ -103,7 +106,7 @@ public class Bird extends CollidableGameObject {
             }
 
             if (jumpNow && duration > 0) {
-                position.y -= 0.085 * duration;
+                position.y -= 0.1 * duration;
 
             }
         } else {
