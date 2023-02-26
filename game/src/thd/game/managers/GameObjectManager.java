@@ -45,14 +45,14 @@ public class GameObjectManager {
 
         upperPillar = -180;
         lowerPillar = 0;
-        gap = 470;
+        gap = 430;
         gameObjects.add(new Pillar(gameView, GameView.WIDTH, 340, lowerPillar));
         gameObjects.add(new Pillar(gameView, GameView.WIDTH, 340 - gap, upperPillar));
         gameObjects.add(overlay);
     }
 
     void updateGameObjects() {
-        moveWorld(1);
+        moveWorld(2);
         buildBackground();
         modifyGameObjectsList();
         ArrayList<CollidableGameObject> collidables = new ArrayList<>(gameObjects.size());
@@ -131,8 +131,9 @@ public class GameObjectManager {
                     return;
                 } else if (g.position.x < -40) {
                     removeGameObject(g);
-                } else if (bird.position.x == g.position.x) {
+                } else if (g.position.x - bird.position.x <= 0 && !((Pillar) g).scoreCounted) {
                     score += 0.5;
+                    ((Pillar) g).scoreCounted = true;
                 }
             }
         }

@@ -45,7 +45,6 @@ public class Overlay extends GameObject {
         time2 = System.currentTimeMillis();
         fpsCounter += 1;
         timeDiff = time2 - time;
-        System.out.println(fpsCounter);
         if ((timeDiff) >= 1000) {
             time = System.currentTimeMillis();
             fps = fpsCounter;

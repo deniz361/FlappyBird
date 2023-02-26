@@ -75,8 +75,8 @@ public class Bird extends CollidableGameObject {
     @Override
     public void reactToCollision(CollidableGameObject other) {
         if (other.getClass() == Pillar.class) {
-            gameObjectManager.gameOver = true;
-            //initializeGameOver();
+            //gameObjectManager.gameOver = true;
+            initializeGameOver();
         }
     }
 
@@ -120,7 +120,7 @@ public class Bird extends CollidableGameObject {
 
     private void initializeGameOver() {
         if (!gameView.alarmIsSet("gameOver", this)) {
-            gameView.setAlarm("gameOver", this, 2000);
+            gameView.setAlarm("gameOver", this, 1000);
             ALLOW_KEYPRESS = false;
             //gameObjectManager.overlay.showMessage("GameOver", 3);
 

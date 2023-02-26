@@ -7,6 +7,7 @@ import thd.gameobjects.base.GameObject;
 public class Pillar extends CollidableGameObject {
 
     private int gap;
+    public boolean scoreCounted;
     /**
      * Crates a new GameObject.
      *
@@ -17,14 +18,14 @@ public class Pillar extends CollidableGameObject {
         positionInSort = 50;
         position.x = positionX;
         position.y = positionY;
-        gap = 470;
+        gap = 540;
         this.rotation = rotation;
 
         height = 320;
         width = 52;
         hitBoxHeight = height;
         hitBoxWidth = width;
-
+        scoreCounted = false;
     }
 
 
